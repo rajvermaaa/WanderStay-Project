@@ -7,7 +7,7 @@
         <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
 
             <div class="mb-3">
-                <lable for="country" class="form-label">Country</lable>
+                <lable for="country" class="form-label">Title</lable>
                 <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required>
                 <div class="valid-feedback">Title looks good</div>
             </div>
