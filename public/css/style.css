@@ -122,3 +122,22 @@ body{
     width: 150px;
     height: 150px;
 }
+.navbar-collapse.show {
+    background-color: #ffffff; /* White background for expanded menu */
+    padding: 1rem; /* Add some padding to prevent content touching the edges */
+    border-radius: 5px; /* Optional: rounded corners */
+  }
+
+    /* Navbar links styling */
+  .navbar-nav .nav-link {
+     margin: 0.5rem 0; /* Space between links */
+     color: #000; /* Ensure the links have a clear text color */
+  }
+  /* Toggler button customization */
+  .navbar-toggler {
+    border: none; /* Remove border for cleaner look */
+    outline: none;
+  }
+  .navbar-toggler-icon {
+    color: #000; /* Change color of toggler icon if needed */
+  }
