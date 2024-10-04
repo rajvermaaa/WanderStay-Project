@@ -1,26 +1,67 @@
 <% layout('layouts/boilerplate') -%> 
 
-<div class="row mt-3">
-    <h1>SignUp on WanderStay</h1>
-    <div class="col-6 offset-3">
-        <form action="/signup" method="POST" class="needs-validation" novalidate>
-           
-            <div class="mb-3">          <!-- /*for username*/ -->
-                <lable for="username" class="form-label">Username</lable>
-                <input name="username" id="username" type="text" class="form-control" required>
-                <div class="valid-feedback">Looks Good!</div>
-            </div>
+<style>
+    body {
+    background-color: #f0f2f5; /* Light background color */
+}
 
-            <div class="mb-3">        <!-- /*for email*/ -->
-                <lable for="email" class="form-label">Email</lable>
-                <input name="email" id="email" type="text" class="form-control" required>
-            </div>
+.card {
+    border-radius: 15px; /* Rounded corners */
+    border: none; /* Remove default border */
+}
 
-            <div class="mb-3">        <!-- /*for password */ -->
-                <lable for="password" class="form-label">Password</lable>
-                <input name="password" id="password" type="text" class="form-control" required>
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #495057; /* Dark grey color for heading */
+}
+
+.btn-dark {
+    background-color: #495057; /* Darker button color */
+}
+
+input::placeholder {
+    color: #adb5bd; /* Light grey for placeholders */
+}
+
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="row">
+        <h1 class="text-center mb-4">Sign Up on WanderStay</h1>
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="card p-4 shadow">
+                <form action="/signup" method="POST" class="needs-validation" novalidate>
+                    
+                    <div class="mb-3"> <!-- for username -->
+                        <label for="username" class="form-label">Username</label>
+                        <input name="username" id="username" type="text" class="form-control" placeholder="Enter your username" required>
+                        <div class="invalid-feedback">
+                            Please enter your username.
+                        </div>
+                        <div class="valid-feedback">Looks good!</div>
+                    </div>
+
+                    <div class="mb-3"> <!-- for email -->
+                        <label for="email" class="form-label">Email</label>
+                        <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
+
+                    <div class="mb-3"> <!-- for password -->
+                        <label for="password" class="form-label">Password</label>
+                        <input name="password" id="password" type="password" class="form-control" placeholder="Enter your password" required>
+                        <div class="invalid-feedback">
+                            Please enter your password.
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button class="btn btn-dark" type="submit">Sign Up</button>
+                    </div>
+                </form>
             </div>
-            <button class="btn btn-dark">SignUp</button>
-        </form>
+        </div>
     </div>
 </div>
