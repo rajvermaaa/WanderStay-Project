@@ -154,7 +154,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">@<%= review.author.username %></h5>
-                        <p class="starability-result card-text"  data-rating="3">
+                        <p class="starability-result card-text"  data-rating="<%= review.rating %>">
                             <%= review.rating %>
                         </p>
                         <p class="card-text"><%= review.comment %></p>
