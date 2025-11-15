@@ -1,0 +1,76 @@
+<% layout("layouts/boilerplate") %>
+
+<style>
+  .payment-container {
+      background: white;
+      padding: 2rem;
+      margin-top: 2rem;
+      border-radius: 12px;
+      box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+      max-width: 700px;
+  }
+
+  .payment-title {
+      font-weight: bold;
+      font-size: 1.5rem;
+  }
+
+  .payment-btn {
+      background-color: #fe424d;
+      color: white;
+      border-radius: 25px;
+      padding: 0.7rem 2rem;
+      border: none;
+  }
+
+  .payment-btn:hover {
+      background-color: #e63a45;
+  }
+</style>
+
+<div class="container d-flex justify-content-center">
+    <div class="payment-container">
+
+        <h2 class="payment-title mb-4">Complete Your Booking</h2>
+
+        <h4 class="text-primary"><%= listing.title %></h4>
+        <p>
+            <strong>Price:</strong> ₹<%= listing.price %> / night <br>
+            <strong>Location:</strong> <%= listing.location %>, <%= listing.country %>
+        </p>
+
+        <hr>
+
+        <!-- Payment Form -->
+        <form action="/listings/<%= listing._id %>/payment" method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input name="fullname" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input name="email" type="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Phone Number</label>
+                <input name="phone" type="number" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Booking Date</label>
+                <input name="bookingDate" type="date" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Number of Nights</label>
+                <input name="nights" type="number" min="1" class="form-control" required>
+            </div>
+
+            <button class="payment-btn w-100 mt-3" type="submit">Confirm Booking</button>
+        </form>
+
+    </div>
+</div>

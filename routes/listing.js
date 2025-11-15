@@ -31,5 +31,13 @@ router
 router.get("/:id/edit",isLoggedIn ,isOwner, wrapAsync(listingController.renderEditForm));
 
 
+// Payment page
+router.get("/:id/payment", wrapAsync(listingController.renderPaymentPage));
+
+// Handle payment submit (logic)
+router.post("/:id/payment", wrapAsync(listingController.processPayment));
+
+
+
 
 module.exports = router;  

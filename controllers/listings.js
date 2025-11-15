@@ -1,4 +1,6 @@
 const Listing = require("../models/listing.js");
+const Booking = require("../models/booking.js");
+
 
 
 module.exports.index =  async(req, res) => {
@@ -84,3 +86,51 @@ module.exports.searchListings = async (req, res) => {
 
     res.render("listings/search.ejs", { results, query });
 };
+
+
+module.exports.renderPaymentPage = async (req, res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id);
+    
+    if (!listing) {
+        req.flash("error", "Listing not found!");
+        return res.redirect("/listings");
+    }
+
+    res.render("listings/payment.ejs", { listing });
+};
+
+
+// Simple payment logic (you can replace with real gateway later)
+module.exports.processPayment = async (req, res) => {
+    const { id } = req.params;
+    const { fullname, email, phone, nights, bookingDate } = req.body;
+
+    const listing = await Listing.findById(id);
+
+    if (!listing) {
+        req.flash("error", "Listing not found!");
+        return res.redirect("/listings");
+    }
+
+    // Calculate price
+    const totalAmount = listing.price * nights;
+
+    // Save booking
+    const newBooking = new Booking({
+        listing: listing._id,
+        user: req.user ? req.user._id : null,  // if logged in
+        fullname,
+        email,
+        phone,
+        nights,
+        bookingDate,
+        totalAmount
+    });
+
+    await newBooking.save();
+
+    req.flash("success", `Booking confirmed! Total Amount: ₹${totalAmount}`);
+    res.redirect(`/listings/${id}`);
+};
+
