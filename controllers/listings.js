@@ -67,3 +67,20 @@ module.exports.destroyListing = async(req,res) => {
     req.flash("success", "Listing Deleted!");
     res.redirect("/listings");
 };
+
+
+module.exports.searchListings = async (req, res) => {
+    const query = req.query.q;
+
+    if (!query || query.trim() === "") {
+        req.flash("error", "Please enter a search term!");
+        return res.redirect("/listings");
+    }
+
+    // Case-insensitive search using regex
+    const results = await Listing.find({
+        title: { $regex: query, $options: "i" }
+    });
+
+    res.render("listings/search.ejs", { results, query });
+};

@@ -2,8 +2,6 @@ if(process.env.NODE_ENV != "production") {
     require("dotenv").config();
 }
 
-
-
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -49,7 +47,7 @@ app.use(express.static(path.join(__dirname, "/public" )));
 
 
 const store = MongoStore.create({
-    mongoUrl: dbUrl,
+    mongoUrl: MONGO_URL,
     crypto: {
         secret: process.env.SECRET,
     },
@@ -91,22 +89,6 @@ app.use((req, res, next) =>  {
 });
 
 
-// Root Route
-// app.get("/", (req, res) => {
-//     res.send("Hi, I am root");
-// });
-
-// app.get("/demouser", async(req,res) => {
-//     let fakeUser = new User({
-//         email: "studentttt@gmail.com",
-//         username: "vermba_55",
-//     });
-
-//     let registeredUser = await User.register(fakeUser, "rajodevi");
-//     res.send(registeredUser);
-// });
-
-
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
@@ -122,7 +104,7 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
     let {statusCode=500, message="Something went wrong"}  = err;
     res.status(statusCode).render("error.ejs", { message }); 
-    // res.status(statusCode).send(message);
+    
 });
 
 // Start the Server

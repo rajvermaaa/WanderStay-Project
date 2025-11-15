@@ -1,0 +1,36 @@
+<% layout("layouts/boilerplate") %>
+
+<style>
+  .listing-card:hover {
+      transform: scale(1.02);
+      transition: 0.3s;
+  }
+</style>
+
+<h3 class="mt-4">
+  Search results for: "<%= query %>"
+</h3>
+
+<hr>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  
+  <% if(results.length === 0) { %>
+      <h4>No listings found for "<%= query %>"</h4>
+  <% } %>
+
+  <% results.forEach(listing => { %>
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+      <div class="card col listing-card">
+        <img src="<%= listing.image.url %>" class="card-img-top" alt="listing image" style="height: 20rem;">
+        <div class="card-body">
+          <p class="card-text">
+            <b><%= listing.title %></b><br>
+            ₹<%= listing.price %>/night
+          </p>
+        </div>
+      </div>
+    </a>
+  <% }) %>
+
+</div>
